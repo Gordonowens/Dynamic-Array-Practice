@@ -85,14 +85,31 @@ int GetNumLines(string file_path) {
     return number_of_lines;
 }
 
+
+/// <summary>
+/// takes and string array and returns array with one extra elements
+/// </summary>
+/// <param name="arr"></param>
+/// <param name="number_elements"></param>
+/// <returns>array with one extra element</returns>
+string* resize(string* arr, int number_elements)
+{
+    //create new empty array with extra element
+    string* resize_arr = new string[number_elements + 1];
+
+    //add elements of existing array to extended array
+    for (int i = 0; i < number_elements; i++) {
+        resize_arr[i] = arr[i];
+    }
+
+    return resize_arr;
+}
+
 int main()
 {
     //questions how to resize arrays
     // issue with C6835
      
-     
-     
-    
     //create basic array
     int basic_array_length = 5;
     int basic_array[5] = { 1,3,5,8,3 };
@@ -104,9 +121,11 @@ int main()
     dynamic_array = new string[dynamic_array_length];
     dynamic_array = ReturnArrayFromFile(file_path, dynamic_array_length);
 
-    //update dynamic array
+    //extend dynamic array by 1 element and add extra element
+    dynamic_array = resize(dynamic_array, dynamic_array_length);
+    dynamic_array_length++;
+    dynamic_array[dynamic_array_length - 1] = " percy";
 
-    dynamic_array[3] = "kevin";
 
    
     //print out basic array
